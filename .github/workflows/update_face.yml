@@ -2,23 +2,24 @@ name: Update Profile Face
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs every hour
-  workflow_dispatch: # Allows you to run it manually
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Add these two lines right here:
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
       - name: Change Face Expression
         run: |
-          # A pool of different symbol faces
           FACES=("( ͡° ͜ʖ ͡°)" "(・_・;)" "(⌐■_■)" "( ﾟヮﾟ)" "(*^.^*)")
           SELECTED_FACE=${FACES[$RANDOM % ${#FACES[@]}]}
-          
-          # Replace a placeholder in your template README
           sed -i "s|<!-- FACE_PLACEHOLDER -->.*|<!-- FACE_PLACEHOLDER --> $SELECTED_FACE|g" README.md
 
       - name: Commit and Push
