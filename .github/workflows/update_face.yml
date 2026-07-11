@@ -19,7 +19,7 @@ jobs:
           SELECTED_FACE=${FACES[$RANDOM % ${#FACES[@]}]}
           
           # Replace a placeholder in your template README
-          sed -i "s/<!-- FACE_PLACEHOLDER -->/$SELECTED_FACE/g" README.md
+          sed -i "s|<!-- FACE_PLACEHOLDER -->.*|<!-- FACE_PLACEHOLDER --> $SELECTED_FACE|g" README.md
 
       - name: Commit and Push
         run: |
