@@ -1,0 +1,30 @@
+name: Update Profile Face
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch: # Allows you to run it manually
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Change Face Expression
+        run: |
+          # A pool of different symbol faces
+          FACES=("( ͡° ͜ʖ ͡°)" "(・_・;)" "(⌐■_■)" "( ﾟヮﾟ)" "(*^.^*)")
+          SELECTED_FACE=${FACES[$RANDOM % ${#FACES[@]}]}
+          
+          # Replace a placeholder in your template README
+          sed -i "s/<!-- FACE_PLACEHOLDER -->/$SELECTED_FACE/g" README.md
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Mood update: Face changed" || exit 0
+          git push
