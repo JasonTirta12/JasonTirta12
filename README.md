@@ -1,2 +1,2 @@
 hello
-<!-- FACE_PLACEHOLDER --> (⌐■_■)
+<!-- FACE_PLACEHOLDER --> ( ﾟヮﾟ)
