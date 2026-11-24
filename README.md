@@ -1,2 +1,2 @@
 hello
-<!-- FACE_PLACEHOLDER --> ( ͡° ͜ʖ ͡°)
+<!-- FACE_PLACEHOLDER --> (*^.^*)
